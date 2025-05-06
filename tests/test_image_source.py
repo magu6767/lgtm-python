@@ -19,7 +19,7 @@ class RemoteImageTest(unittest.TestCase):
     def test_get_image(self):
         from lgtm.image_source import RemoteImage
 
-        url = "https://raw.githubusercontent.com/rhoboro/lgtm/master/tests/data/test_image.jpg"
+        url = "https://raw.githubusercontent.com/magu6767/lgtm-python/main/tests/data/test_image.jpg"
         with RemoteImage(url).get_image() as f:
             actual = f.read()
 
