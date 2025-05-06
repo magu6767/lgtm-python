@@ -1,4 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
+import os
+import platform
 
 # 文字列の最大幅を画像の80%にする
 MAX_RATIO = 0.8
@@ -9,11 +11,17 @@ FONT_MAX_SIZE = 256
 FONT_MIN_SIZE = 24
 
 # フォントの格納先パス（環境ごとに変わる）
-FONT_NAME = '/Library/Fonts/Arial Unicode.ttf'
+if platform.system() == 'Darwin':  # macOS
+    FONT_NAME = '/Library/Fonts/Arial Unicode.ttf'
+elif platform.system() == 'Linux':
+    FONT_NAME = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+else:  # Windows
+    FONT_NAME = 'C:\\Windows\\Fonts\\arial.ttf'
+
 FONT_COLOR_WHITE = (255, 255, 255, 0)
     
 # アウトプット関連の定数
-OUTPUT_NAME = 'output.png'
+OUTPUT_NAME = os.path.join(os.getcwd(), 'output.png')
 OUTPUT_FORMAT = 'PNG'
 
 def save_with_message(fp, message):
